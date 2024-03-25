@@ -1,0 +1,62 @@
+# TASK NO 3
+# Password generator app
+
+from tkinter import *
+from random import randint
+
+PG_app = Tk()
+PG_app.geometry("600x450+100+40")
+PG_app.resizable(False, False)
+PG_app.title("KEYPER")
+
+Label_1 = Label(PG_app, text="Password Generator", font="ariel, 40 bold", width=10, bd=5, bg="grey", fg="black")
+Label_1.pack(side=TOP, fill=BOTH)
+
+My_password = chr(randint(33, 126))
+
+
+# Password generator function
+def new_rand():
+    PW_entry.delete(0, END)
+
+    pw_length = int(My_entry.get())         # To get password length
+
+    My_password = ""                       # To hold new password
+
+    for x in range(pw_length):
+        My_password += chr(randint(33, 126))
+
+    PW_entry.insert(0, My_password)   # Output password
+
+
+# Copy function
+def clipper():
+    PG_app.clipboard_clear()                    # To clear
+    PG_app.clipboard_append(PW_entry.get())     # To copy
+
+
+# Frame for Label
+Lframe = LabelFrame(PG_app, text="Number of Characters?")
+Lframe.pack(pady=30)
+
+# Entry Box for No of Characters
+My_entry = Entry(Lframe, font="helvetica, 25")
+My_entry.pack(pady=30, padx=40)
+
+# Entry Box for Password
+PW_entry = Entry(PG_app, font="Helvetica, 25", bd=0, bg="systembuttonface")
+PW_entry.pack(pady=30)
+
+# Frame for Buttons
+Bframe = Frame(PG_app)
+Bframe.pack(pady=30)
+
+# Buttons
+Generate_B1 = Button(Bframe, text="Generate Password", command=new_rand)
+Generate_B1.grid(row=0, column=0, padx=60)
+
+Copy_B2 = Button(Bframe, text="Copy Password", command=clipper)
+Copy_B2.grid(row=0, column=1, padx=60)
+
+
+PG_app.mainloop()
