@@ -1,0 +1,42 @@
+
+# Task # 4
+# Rock-Paper-Scissor GAME
+
+import random
+
+options = ("rock", "paper", "scissors")
+play_again = True  # Flag variable
+
+while play_again:
+
+    player = None
+    computer = random.choice(options)
+
+    while player not in options:
+        player = input("Enter choice (rock, paper, scissors): ")
+
+    print(f"Player: {player}")
+    print(f"Computer: {computer}")
+
+    # TIE condition
+    if player == computer:
+        print(" Its a TIE ")
+
+    # WIN conditions
+    elif player == "paper" and computer == "rock":
+        print(" You WIN ")
+    elif player == "scissors" and computer == "paper":
+        print(" You WIN ")
+    elif player == "rock" and computer == "scissors":
+        print(" You WIN ")
+
+    # LOSE condition
+    else:
+        print(" You LOSE ")
+
+    # check to play again
+    want_to_play_again = input(" Do You Want To Play Again? (y/n): ").lower()
+    if want_to_play_again != "y":
+        play_again = False
+
+print(" Thanks For Playing ")
